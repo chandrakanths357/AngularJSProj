@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script src="angular.js"></script>
+<link href="bootstrap.css" rel="stylesheet">
+<link href="bootstrap-theme.css" rel="stylesheet">
+
+<script>
+	 	
+	    var app = angular.module("myApp",[]);
+	    
+	    
+		
+		app.controller("myCtrl",function($scope,$http){
+			
+			$http.get("todo.json").success(function(data){
+				$scope.items = data;	
+			});
+		});
+	
+</script>
+
+</head>
+<body ng-controller="myCtrl">
+
+		
+	<div class="page-header">
+		<h1>List of things to do</h1>
+	</div>
+
+	<div class="panel">
+		
+		<table class="table table-striped">
+			
+			<thead>
+				<tr><th>Description</th><th>Done</th></tr>
+			</thead>
+			
+			<tbody>
+			
+				<tr ng-repeat="item in items">
+					<td>{{item.action}}</td>
+					<td>{{item.done}}</td>
+				</tr>
+			</tbody>
+		
+		</table>
+	
+	</div>	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

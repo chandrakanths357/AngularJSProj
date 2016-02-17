@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script src="angular.js"></script>
+<link href="bootstrap.css" rel="stylesheet">
+<link href="bootstrap-theme.css" rel="stylesheet">
+
+<script>
+	 	
+	    var app = angular.module("myApp",[]);	    
+		
+		app.controller("myCtrl",function($scope,$http){
+			
+			$scope.searchRecord = function(){
+				
+				var url = "http://localhost:9999/SampleRESTfulProj/rest/productService/"+$scope.productId;
+				
+				$http.get(url).success(function(data){
+					$scope.product = data;
+				});			
+			}
+			
+		});
+	
+</script>
+
+
+</head>
+<body ng-controller="myCtrl">
+
+	<h2 align="center">Search Page</h2>
+	
+	<form>
+		
+		ProductId : <input type="text" name="productId" ng-model="productId">
+		<button ng-click="searchRecord()">Search</button>
+	
+	</form>
+	
+	<table>
+		
+		<tr>
+			<td>{{product.id}}</td>
+			<td>{{product.name}}</td>
+			<td>{{product.price}}</td>
+			<td>{{product.description}}</td>
+		</tr>
+			
+	</table>
+
+</body>
+</html>

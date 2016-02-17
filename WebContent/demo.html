@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<script src="jquerylib/jquery-1.11.3.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+		
+		$("button").click(
+			
+			function(){
+				$("#loginForm").slideUp();
+			}
+		);
+		
+		$("input").on({		
+		
+			focus: function(){
+				
+				$(this).css("background-color","#cccccc")
+				
+			},
+			
+			blur: function(){
+				
+				$(this).css("background-color","#ffffff")
+				
+			}
+		
+		
+		}
+		
+		);
+		
+		
+	});
+	
+</script>
+
+<title>Insert title here</title>
+</head>
+<body>
+	
+		<h2 align="center">jQuery Demo</h2>
+		
+		<button>Show Form</button>
+			
+		<form action=""  id="loginForm">
+			
+			Username : <input type="text" name="username"> <br>
+			Password : <input type="password" name="password"><br>
+			
+			<input id="submit" type="submit" value="LOGIN">
+		
+		</form>
+		
+		
+
+</body>
+</html>

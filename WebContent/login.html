@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+
+	$(document).ready(function(){
+		$("#loginForm").submit(function(e){
+		
+		var formData = $(this).serializeArray();
+		
+		var formURL = 'loginProcess';
+		
+		$.ajax({
+			
+			url  : formURL,
+			type : "POST",
+			async: true,
+			data : formData,			
+			success:function(data,textStatus,jqXHR){
+				
+				$("#loginForm").fadeOut();
+				$("#message").html("<h3>U R Logged in successfully</h3>");
+				
+			},			
+			error:function(jqXHR,textStatus,errorThrown){
+				alert(errorThrown);
+			}
+			
+		});
+		e.preventDefault();//STOP default action
+		e.unbind();//unbind, to stop multiple form submission.
+		$("#loginForm").submit();
+	});
+	
+	
+	
+});
+
+</script>
+
+</head>
+<body>
+
+	<h2 align="center">Login Page</h2>
+	
+	<div id="message"></div>
+	
+	<form id="loginForm" method="post">
+		
+		<table>
+			
+			<tr><td>Username </td><td><input type="text" name="username"/></td></tr>
+			<tr><td>Password </td><td><input type="password" name="password"/></td></tr>
+			<tr><td><input type="submit" value="LOGIN"> </td></tr>
+		</table>
+	
+	</form>
+
+</body>
+</html>
